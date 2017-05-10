@@ -2,8 +2,8 @@ require 'order'
 
 describe Order do
   subject(:order) { described_class.new }
-  let(:advert1) { Advert.new 'WNP/SWCL001/010' }
-  let(:advert2) { Advert.new 'ZDW/EOWW005/010' }
+  let(:advert1) { Advert.new 'WNP/SWCL001/010', 'ITV' }
+  let(:advert2) { Advert.new 'ZDW/EOWW005/010', 'Disney' }
 
   context 'order' do
 
