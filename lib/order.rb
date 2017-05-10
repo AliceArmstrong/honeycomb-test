@@ -1,8 +1,11 @@
+require_relative 'advert'
+
 class Order
   attr_accessor :standard, :express
 
   STANDARD_PRICE = 10
   EXPRESS_PRICE = 20
+  DISC_EXPRESS_PRICE = 15
 
   def initialize
     @standard = []
@@ -22,7 +25,16 @@ class Order
   end
 
   def total_cost
-      (@standard.count * STANDARD_PRICE) + (@express.count * EXPRESS_PRICE)
+    if @express.count >= 2
+      cost = (@standard.count * STANDARD_PRICE) + (@express.count * DISC_EXPRESS_PRICE)
+    else
+      cost = (@standard.count * STANDARD_PRICE) + (@express.count * EXPRESS_PRICE)
+    end
+    if cost > 30
+      cost = cost * 0.9
+    else
+      cost
+    end
   end
 
 end

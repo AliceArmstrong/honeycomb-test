@@ -31,9 +31,17 @@ describe Order do
       expect(order.total_cost).to eq(30)
     end
 
-    # it can calculate 30% discount
+    it 'can apply 10% discount on orders over $30' do
+      order.place_standard_order(advert1, advert2)
+      order.place_express_order(advert2)
+      expect(order.total_cost).to eq(36)
+    end
 
-    # it can calculate express as $15 when over 2
+    it 'can calculate express as $15 when over two express orders' do
+    order.place_express_order(advert1, advert2, advert1)
+    expect(order.total_cost).to eq(40.5)
+  end
+
   end
 
 end
