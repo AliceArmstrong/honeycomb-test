@@ -30,12 +30,10 @@ describe Order do
       expect(order.total_cost).to eq(40.5)
     end
 
-    # it 'can show the order invoice' do
-    #   multiple_order
-    #   expect(order.order_invoice.to_s).to include("ZDW/EOWW005/010")
-    #   expect(order.order_invoice.to_s).to include("Disney")
-    #   expect(order.order_invoice.to_s).to include("Total cost: 36")
-    # end
+    it 'can show the order invoice' do
+      multiple_order
+      expect{order.order_invoice.to_s}.to output.to_stdout
+    end
 
   end
 

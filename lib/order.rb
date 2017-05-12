@@ -32,44 +32,44 @@ class Order
   end
 
   def order_invoice
-  standard_memo
-  express_memo
-  return "Total cost: #{total_cost}"
+    standard_memo
+    express_memo
+    p "Total cost: #{total_cost}"
   end
 
   def standard_memo
     p "STANDARD:"
-    p @standard.each { |item|
-    "Advert ID: " + item.clock_num.to_s
-    "Broadcaster destination: " + item.destination.name.to_s
-    "---"
-  }
-end
-
-def express_memo
-  "EXPRESS:"
-  @express.each { |item|
-  "Advert ID: " + item.clock_num.to_s
-  "Broadcaster destination: " + item.destination.name.to_s
-  "---"
-}
-end
-
-def express_discount
-  if @express.count >= EXPRESS_DISCOUNT_COUNT
-    cost = (@standard.count * STANDARD_PRICE) + (@express.count * DISC_EXPRESS_PRICE)
-  else
-    cost = (@standard.count * STANDARD_PRICE) + (@express.count * EXPRESS_PRICE)
+    @standard.each { |item|
+      p "Advert ID: " + item.clock_num.to_s
+      p "Broadcaster destination: " + item.destination.name.to_s
+      p "---"
+    }
   end
-  percentage_discount(cost)
-end
 
-def percentage_discount(cost)
-  if cost > DISCOUNT_THRESHOLD
-  cost = cost * DISCOUNT_PERCENTAGE
-else
-  cost
-end
-end
+  def express_memo
+    p "EXPRESS:"
+    @express.each { |item|
+      p "Advert ID: " + item.clock_num.to_s
+      p "Broadcaster destination: " + item.destination.name.to_s
+      p "---"
+    }
+  end
+
+  def express_discount
+    if @express.count >= EXPRESS_DISCOUNT_COUNT
+      cost = (@standard.count * STANDARD_PRICE) + (@express.count * DISC_EXPRESS_PRICE)
+    else
+      cost = (@standard.count * STANDARD_PRICE) + (@express.count * EXPRESS_PRICE)
+    end
+    percentage_discount(cost)
+  end
+
+  def percentage_discount(cost)
+    if cost > DISCOUNT_THRESHOLD
+      cost = cost * DISCOUNT_PERCENTAGE
+    else
+      cost
+    end
+  end
 
 end
